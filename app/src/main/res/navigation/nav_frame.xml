@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_frame"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ayn.ksqbsq.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_yarimIllikFragment"
+            app:destination="@id/yarimIllikFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_illikFragment"
+            app:destination="@id/illikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hesabYarimIllikFragment"
+        android:name="com.ayn.ksqbsq.HesabYarimIllikFragment"
+        android:label="fragment_hesab_yarim_illik"
+        tools:layout="@layout/fragment_hesab_yarim_illik" />
+    <fragment
+        android:id="@+id/illikFragment"
+        android:name="com.ayn.ksqbsq.IllikFragment"
+        android:label="fragment_illik"
+        tools:layout="@layout/fragment_illik" >
+        <action
+            android:id="@+id/action_illikFragment_to_hesabYarimIllikFragment"
+            app:destination="@id/hesabYarimIllikFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yarimIllikFragment"
+        android:name="com.ayn.ksqbsq.YarimIllikFragment"
+        android:label="fragment_yarim_illik"
+        tools:layout="@layout/fragment_yarim_illik" />
+</navigation>
