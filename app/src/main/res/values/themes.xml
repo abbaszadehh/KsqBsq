@@ -13,4 +13,12 @@
         android:theme = "@style/NoActionBar"
 
        </style>
+
+    <style name="MyStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blue</item>
+        <item name="paddingStart">12dp</item>
+        <item name="android:textColorHint">@color/blue</item>
+
+
+    </style>
 </resources>
