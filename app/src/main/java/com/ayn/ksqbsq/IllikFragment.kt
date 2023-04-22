@@ -5,55 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.ayn.ksqbsq.databinding.FragmentIllikBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [IllikFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class IllikFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentIllikBinding
+    var param1: Double? = null
+    var param2: Double? = null
+    var resultBal: Double? = null
+    var resultQiymet: Double? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_illik, container, false)
+
+        binding = FragmentIllikBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IllikFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            IllikFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            hesabla.setOnClickListener {
+
+                param1 = binding.firstTerm.text.toString().toDoubleOrNull()
+                param2 = binding.secondTerm.text.toString().toDoubleOrNull()
+
+                if (param1 == null || param2 == null) {
+
+                    Toast.makeText(context, "Lazımi yerləri doldurun!!", Toast.LENGTH_LONG).show()
+                } else {
+                    resultBal = (param1!! + param2!!) / 2.0
+                    binding.bal.text = "Illik bal : $resultBal"
+
+                    if (resultBal!! <= 30.09) {
+                        resultQiymet = 2.0
+
+                    } else if (resultBal!! >= 30 && resultBal!! <= 60.09) {
+                        resultQiymet = 3.0
+                    } else if (resultBal!! >= 60.1 && resultBal!! <= 80.09) {
+                        resultQiymet = 4.0
+                    } else {
+                        resultQiymet = 5.0
+                    }
+
+                    binding.qiymet.text = "Illik qiymət : $resultQiymet"
+
+                }
+
+            }
+
+            binding.delete.setOnClickListener {
+
+                with(binding) {
+                    firstTerm.text = null
+                    secondTerm.text = null
+                    bal.text = "bal"
+                    qiymet.text = "qiymət"
                 }
             }
+        }
     }
 }

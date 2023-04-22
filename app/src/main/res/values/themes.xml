@@ -11,5 +11,6 @@
         <item name="android:statusBarColor">@color/blue</item>
         <!-- Customize your theme here. -->
         android:theme = "@style/NoActionBar"
-    </style>
+
+       </style>
 </resources>

@@ -21,19 +21,23 @@
         android:id="@+id/hesabYarimIllikFragment"
         android:name="com.ayn.ksqbsq.HesabYarimIllikFragment"
         android:label="fragment_hesab_yarim_illik"
-        tools:layout="@layout/fragment_hesab_yarim_illik" />
+        tools:layout="@layout/fragment_hesab_yarim_illik" >
+        <argument
+            android:name="ksqbsq"
+            app:argType="com.ayn.ksqbsq.IntentModel" />
+    </fragment>
     <fragment
         android:id="@+id/illikFragment"
         android:name="com.ayn.ksqbsq.IllikFragment"
         android:label="fragment_illik"
-        tools:layout="@layout/fragment_illik" >
-        <action
-            android:id="@+id/action_illikFragment_to_hesabYarimIllikFragment"
-            app:destination="@id/hesabYarimIllikFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_illik" />
     <fragment
         android:id="@+id/yarimIllikFragment"
         android:name="com.ayn.ksqbsq.YarimIllikFragment"
         android:label="fragment_yarim_illik"
-        tools:layout="@layout/fragment_yarim_illik" />
+        tools:layout="@layout/fragment_yarim_illik" >
+        <action
+            android:id="@+id/action_yarimIllikFragment_to_hesabYarimIllikFragment"
+            app:destination="@id/hesabYarimIllikFragment" />
+    </fragment>
 </navigation>
