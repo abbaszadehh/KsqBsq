@@ -50,24 +50,29 @@ class HesabYarimIllikFragment : Fragment() {
         with(binding) {
             hesabla.setOnClickListener {
                 when(shart.ksq){
-                    3,4,5,6 ->{ balHesabla(shart.ksq) }
+                    3,4,5,6 ->{
+                        if (editTextList.all { it.text.toString().isNotEmpty() })
+                            balHesabla(shart.ksq)
+                    }
                     else->{
                         Toast.makeText(context, "Daxiletməni qaydalara uyğun edin!", Toast.LENGTH_LONG)
                             .show()
                     }
                 }
 
-                if (resultBal!! <= 30.09) {
-                    resultQiymet = 2.0
-                } else if (resultBal!! >= 30 && resultBal!! <= 60.09) {
-                    resultQiymet = 3.0
-                } else if (resultBal!! >= 60.1 && resultBal!! <= 80.09) {
-                    resultQiymet = 4.0
-                } else {
-                    resultQiymet = 5.0
-                }
+                if (resultBal!=null){
+                    resultQiymet = if (resultBal!! <= 30.09) {
+                        2.0
+                    } else if (resultBal!! in 30.0..60.09) {
+                        3.0
+                    } else if (resultBal!! in 60.1..80.09) {
+                        4.0
+                    } else {
+                        5.0
+                    }
 
-                binding.illikQiymet.text = "Illik qiymət : $resultQiymet"
+                    binding.illikQiymet.text = "Illik qiymət : $resultQiymet"
+                }
             }
         }
 
